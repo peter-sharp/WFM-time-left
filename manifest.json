@@ -1,0 +1,21 @@
+{
+
+    "manifest_version": 2,
+    "name": "WFM Time Left",
+    "version": "1.0",
+
+    "description": "Displays how much time is left in a 40 week on the timesheet page",
+
+    "icons": {
+        "48": "icons/smile.svg"
+    },
+
+    "content_scripts": [
+      {
+        "matches": ["*://*.workflowmax.com/my/timesheet*"],
+        "js": ["timeleft.js"],
+        "run_at" : "document_idle"
+      }
+    ]
+  
+  }
