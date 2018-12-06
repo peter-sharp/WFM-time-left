@@ -3,7 +3,7 @@
     "manifest_version": 2,
     "name": "WFM Time Left",
     "version": "1.0",
-
+    "homepage_url": "https://github.com/peter-sharp/WFM-time-left",
     "description": "Displays how much time is left in a 40 week on the timesheet page",
 
     "icons": {
