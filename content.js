@@ -1,5 +1,5 @@
 'use strict';
-
+const browser = window.browser || window.chrome
 const script = document.createElement('script')
 script.setAttribute('type', 'module')
 script.setAttribute('src', browser.extension.getURL('main.js'))
