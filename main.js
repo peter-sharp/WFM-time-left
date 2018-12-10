@@ -1,6 +1,6 @@
-import moment from 'https://unpkg.com/moment@2.22.2/src/moment.js'
+import Duration from './Duration.js';
 
-import './ProgressIndicator.js'
+import './ProgressIndicator.js';
 
 console.log('timeleft started')
 
@@ -9,19 +9,17 @@ const hoursPerWeek = 40
 let $summaryRow = $('.max-summary').querySelector('tbody tr');
 let $totalCol = $summaryRow.querySelector('td:last-child');
 let $leftCol = $totalCol.cloneNode(true);
-let complete = toAspMsDuration($totalCol.querySelector('.max-summary-text').innerHTML)
+let complete = Duration.fromAspTime($totalCol.querySelector('.max-summary-text').innerHTML)
 
-let perWeek = moment.duration(hoursPerWeek, 'hours')
-let left =  perWeek.subtract(moment.duration(complete))
+let perWeek = Duration.fromObject({hours: hoursPerWeek})
+let left =  perWeek.minus(complete)
 let $leftSummary = $leftCol.querySelector('.max-summary-text')
-$leftSummary.innerHTML =  `${Math.floor(left.asHours())}:${left.minutes()}`
+$leftSummary.innerHTML =  `${Math.floor(left.as('hours'))}:${left.minutes}`
 let $progress = document.createElement('pie-progress')
-$progress.setAttribute('percent', left.asHours() / perWeek.asHours())
+$progress.setAttribute('percent', left.as('hours') / perWeek.as('hours'))
 $leftSummary.appendChild($progress)
 $leftCol.querySelector('.max-summary-heading').innerHTML = 'Left'
+
 $summaryRow.appendChild($leftCol);
 debugger
-function toAspMsDuration(str) {
-    return str + ':00'
-}
 
