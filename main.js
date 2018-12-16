@@ -16,7 +16,7 @@ let left =  perWeek.minus(complete)
 let $leftSummary = $leftCol.querySelector('.max-summary-text')
 $leftSummary.innerHTML =  `${Math.floor(left.as('hours'))}:${left.minutes}`
 let $progress = document.createElement('pie-progress')
-$progress.setAttribute('percent', left.as('hours') / perWeek.as('hours'))
+$progress.setAttribute('percent', complete.as('hours') / perWeek.as('hours'))
 $leftSummary.appendChild($progress)
 $leftCol.querySelector('.max-summary-heading').innerHTML = 'Left'
 
