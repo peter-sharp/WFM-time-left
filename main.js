@@ -16,7 +16,7 @@ let complete = Duration.fromAspTime($totalCol.querySelector('.max-summary-text')
 let perWeek = Duration.fromObject({hours: hoursPerWeek})
 let left =  perWeek.minus(complete)
 let $leftSummary = $leftCol.querySelector('.max-summary-text')
-$leftSummary.innerHTML =  `${Math.floor(left.as('hours'))}:${zeroPad(2, left.minutes)}`
+$leftSummary.innerHTML =  left.toFormat('h:mm')
 let $progress = document.createElement('pie-progress')
 $progress.setAttribute('percent', complete.as('hours') / perWeek.as('hours'))
 $leftSummary.appendChild($progress)
@@ -30,9 +30,6 @@ function showDayHoursLeft($cell) {
     let complete = Duration.fromAspTime($cell.querySelector('.max-summary-text').innerHTML)
     let perDay = Duration.fromObject({hours: hoursPerDay})
     let left = perDay.minus(complete)
-    $cell.querySelector('.max-summary-text').title =  `left ${Math.floor(left.as('hours'))}:${zeroPad(2, left.minutes)}`
+    $cell.querySelector('.max-summary-text').title =  `left ${left.toFormat('h:mm')}`
 }
 
-function zeroPad(length = 2, number) {
-    return String(number).padStart(length, '0')
-}

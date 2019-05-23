@@ -21,16 +21,33 @@ Duration.fromMilliseconds = function(milliseconds) {
 
 
     function millisecondsTohours(milliseconds) {
+        
         let hours = milliseconds / MILLISECONDS_PER_SECOND / SECONDS_PER_MINUTE / MINUTES_PER_HOUR
-        return hours
+        if(0 > milliseconds) {
+            hours = 1 + hours;
+        }
+        return hours;
     }
-    debugger
+
+    function getRemainingMinutes(milliseconds) {
+        let hours = millisecondsTohours(milliseconds)
+        let hourPercent = Math.abs(hours) - Math.abs(Math.floor(hours))
+        if(0 > milliseconds) {
+            hourPercent = 1 - hourPercent;
+        }
+        let minutes =  hourPercent * MINUTES_PER_HOUR
+
+
+        return Math.floor(minutes) 
+    }
+
+    function zeroPad(length = 2, number) {
+        return String(number).padStart(length, '0')
+    }
+    
     return {
         get minutes() {
-            let hours = millisecondsTohours(milliseconds)
-            let minutes = (hours - Math.floor(hours)) * MINUTES_PER_HOUR
-
-            return Math.floor(minutes) 
+            return getRemainingMinutes(milliseconds) 
         },
         as(unit) { 
             let value
@@ -47,7 +64,12 @@ Duration.fromMilliseconds = function(milliseconds) {
         minus(duration) {
             return Duration.fromMilliseconds(milliseconds - duration.milliseconds)
         },
-        get milliseconds() {return milliseconds }
+        get milliseconds() {return milliseconds },
+        toFormat(format) {
+            if('h:mm' == format) {
+                return `${milliseconds < 0 ? '-' : ''} ${Math.floor(millisecondsTohours(milliseconds))}:${zeroPad(2, getRemainingMinutes(milliseconds))}`
+            }
+        }
     }
 }
 
