@@ -1,0 +1,27 @@
+{
+  "name": "wfm-time-left",
+  "version": "1.0.0",
+  "description": "Web extension that tells you how many hours you have left for the week",
+  "browser": "",
+  "scripts": {
+    "prepare": "pika-web",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peter-sharp/WFM-time-left.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peter-sharp/WFM-time-left/issues"
+  },
+  "homepage": "https://github.com/peter-sharp/WFM-time-left#readme",
+  "dependencies": {
+    "dayjs": "^1.8.14"
+  },
+  "devDependencies": {
+    "@pika/web": "^0.4.2"
+  }
+}

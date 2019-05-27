@@ -20,7 +20,9 @@
     "web_accessible_resources": [
       "main.js",
       "ProgressIndicator.js",
-      "Duration.js"
+      "Duration.js",
+      "web_modules/dayjs.js",
+      "addDuration.js"
     ]
   
   }
