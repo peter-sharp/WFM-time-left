@@ -61,6 +61,9 @@ Duration.fromMilliseconds = function(milliseconds) {
             }
             return value
         },
+        plus(duration) {
+            return Duration.fromMilliseconds(milliseconds + duration.milliseconds)
+        },
         minus(duration) {
             return Duration.fromMilliseconds(milliseconds - duration.milliseconds)
         },
